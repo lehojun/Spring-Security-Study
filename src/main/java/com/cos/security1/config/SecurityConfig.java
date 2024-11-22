@@ -33,7 +33,9 @@ public class SecurityConfig {
 
         http.formLogin(form -> form
                 .loginPage("/loginForm")
-                .loginProcessingUrl("/login")); //login 주소가 호출이 되면 시큐리티가 낚아채서 대신 로그인을 해줌
+                .loginProcessingUrl("/login")//login 주소가 호출이 되면 시큐리티가 낚아채서 대신 로그인을 해줌
+                .defaultSuccessUrl("/")); //로그인 성공시 기본 페이지
+
 
         return http.build();
     }
