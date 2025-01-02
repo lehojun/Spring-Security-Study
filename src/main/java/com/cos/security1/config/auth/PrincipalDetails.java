@@ -15,7 +15,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 public class PrincipalDetails implements UserDetails {
 
@@ -37,6 +36,7 @@ public class PrincipalDetails implements UserDetails {
         return collect;
     }
 
+    // password 리턴
     @Override
     public String getPassword() {
         return user.getPassword();
@@ -44,7 +44,7 @@ public class PrincipalDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return user.getUseranme();
+        return user.getUsername();
     }
 
     @Override
@@ -53,13 +53,19 @@ public class PrincipalDetails implements UserDetails {
     }
 
     @Override
-    public boolean isCredentialsNonExpired() {
-        return false;
+    public boolean isAccountNonLocked() {
+        return true;
     }
 
-    //현재시간 - 로그인시간 -> 1년을 초과하면 false로 변환
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
     @Override
     public boolean isEnabled() {
+        // 1년동안 회원이 로그인을 안하면, 휴먼 계정으로 하기로함
+        // 현재시간 - 로그인 시간 >= 1년을 초과하면 return false 등등...
         return true;
     }
 }

@@ -20,7 +20,7 @@ public class PrincipalDetailsService implements UserDetailsService {
     // 해당 함수가 호출되면 UserDetails 타입으로 returnㅇ 되는데 자동 생성된 Authentication 타입에 들어가는 것
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User userEntity = userRepository.findByUseranme(username);
+        User userEntity = userRepository.findByUsername(username);
         if(userEntity != null) {
             return new PrincipalDetails(userEntity);
         }

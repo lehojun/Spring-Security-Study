@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface UserRepository extends JpaRepository<User, Integer> {
     //findBy까지는 규칙이고, Username은 문법이다.
     // select * from user where username = ?
-    public User findByUseranme(String username);
+    public User findByUsername(String username);
 
 
 }
