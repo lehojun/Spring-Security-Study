@@ -12,15 +12,22 @@ package com.cos.security1.config.auth;
 import com.cos.security1.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Map;
 
-public class PrincipalDetails implements UserDetails {
+public class PrincipalDetails implements UserDetails, OAuth2User{
 
     private User user; //콤포지션
     public PrincipalDetails(User user) {
         this.user = user;
+    }
+
+    @Override
+    public Map<String, Object> getAttributes() {
+        return Map.of();
     }
 
     //해당 User의 권한을 리턴하는 곳
@@ -67,5 +74,10 @@ public class PrincipalDetails implements UserDetails {
         // 1년동안 회원이 로그인을 안하면, 휴먼 계정으로 하기로함
         // 현재시간 - 로그인 시간 >= 1년을 초과하면 return false 등등...
         return true;
+    }
+
+    @Override
+    public String getName() {
+        return "";
     }
 }

@@ -17,7 +17,7 @@ public class PrincipalDetailsService implements UserDetailsService {
     private UserRepository userRepository;
 
     // 시큐리티 session에는 Authentication 타입만이 들어갈 수 있고, 해당 타입은 UserDetails 타입만 담을 수 있다. 중요!
-    // 해당 함수가 호출되면 UserDetails 타입으로 returnㅇ 되는데 자동 생성된 Authentication 타입에 들어가는 것
+    // 해당 함수가 호출되면 UserDetails 타입으로 return이 되는데 자동 생성된 Authentication 타입에 들어가는 것
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User userEntity = userRepository.findByUsername(username);
