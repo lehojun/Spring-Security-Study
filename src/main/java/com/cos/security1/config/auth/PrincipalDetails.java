@@ -10,24 +10,35 @@ package com.cos.security1.config.auth;
 // 그리고 이 객체 안에 들어가야 하는 유저 정보의 타입은 UserDetails이다.
 
 import com.cos.security1.model.User;
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 
 public class PrincipalDetails implements UserDetails, OAuth2User{
 
     private User user; //콤포지션
+    private Map<String,Object> attributes;
+
+    //일반 로그인
     public PrincipalDetails(User user) {
         this.user = user;
     }
 
-    @Override
+    //OAuth 로그인
+    public PrincipalDetails(User user, Map<String,Object> attributes) {
+        this.user = user;
+        this.attributes = attributes;
+    }
+
+
     public Map<String, Object> getAttributes() {
-        return Map.of();
+        return attributes;
     }
 
     //해당 User의 권한을 리턴하는 곳
@@ -76,8 +87,12 @@ public class PrincipalDetails implements UserDetails, OAuth2User{
         return true;
     }
 
+    public User getUser() {
+        return user;
+    }
+
     @Override
     public String getName() {
-        return "";
+        return null;
     }
 }

@@ -11,6 +11,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.stereotype.Component;
+
+
 
 @Configuration
 @EnableWebSecurity // 스프링 시큐리티 필터가 스프링 필터체인에 등록
@@ -21,10 +24,10 @@ public class SecurityConfig {
     private PrincipalOauth2UserService principalOauth2UserService;
 
     // Bean 어노테이션을 적으면 해당 메서드의 리턴되는 오브젝트를 IoC로 등록해준다. 그럼 어디서든 쓸 수 있음.
-    @Bean
-    public BCryptPasswordEncoder encodePwd() {
-        return new BCryptPasswordEncoder();
-    }
+//    @Bean
+//    public BCryptPasswordEncoder encodePwd() {
+//        return new BCryptPasswordEncoder();
+//    }
 
 
     @Bean
@@ -52,7 +55,6 @@ public class SecurityConfig {
 
         return http.build();
     }
-
 
 }
 
